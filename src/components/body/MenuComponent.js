@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import MenuItemComponent from './MenuItem'
-import DISHES from '../../data/dishes'
-import COMMENTS from '../../data/comments';
 import DishDetailComponent from './DishDetails';
 import { CardColumns,Modal, ModalFooter,Button } from 'reactstrap';
+import { connect } from 'react-redux';
 
+
+const mapStateToProps = (state) =>{
+  console.log(state);
+
+  return {
+    dishes : state.dishes,
+    comments : state.comments
+  }
+
+}
 class MenuComponent extends Component {
   state = {
-    dishes : DISHES,
-    comments : COMMENTS,
     selctedDish : null,
     modalOpen : false,
   };
@@ -27,10 +34,19 @@ class MenuComponent extends Component {
 
   render(){
     document.title = 'Menu';
-    const menu = this.state.dishes.map(dish => {return (<MenuItemComponent dish = {dish} key = {dish.id} onSelectDish = {this.onSelectDish}/>)});
+    const menu = this.props.dishes.map(dish => {
+      return (
+      <MenuItemComponent 
+        dish = {dish} 
+        key = {dish.id} 
+        onSelectDish = {this.onSelectDish}
+      />
+      )
+    });
     let dishDetail = null;
     if(this.state.selctedDish != null){
-      const commments = this.state.comments.filter(comment => {return comment.dishId === this.state.selctedDish.id;})
+      const commments = this.props.comments.filter(comment => {
+        return comment.dishId === this.state.selctedDish.id;})
       dishDetail = <DishDetailComponent dish = { this.state.selctedDish
     }
     comments = {commments}
@@ -56,4 +72,4 @@ class MenuComponent extends Component {
   }
 }
 
-export default MenuComponent
+export default connect(mapStateToProps)(MenuComponent);
