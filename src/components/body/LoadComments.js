@@ -6,11 +6,11 @@ import dateFormat, { masks } from "dateformat";
 
 const LoadComments = ({comments}) => {
   let show_comments = comments.map((comment) => {
-    console.log(comment.comment);
     return <div>
       <ListGroupItem>
         <h6>{comment.author}</h6>
         <p>{comment.comment}</p>
+        <p>Rating : {comment.rating}</p>
         <b>{dateFormat(comment.date, 'dddd, mmmm d, yyyy')}</b>
         </ListGroupItem>
       </div>

@@ -1,17 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
-  console.log("mapStateToProps", state);
-  return {
-    dishes : state.dishes
-  }
-}
+
 export class Home extends Component {
-  componentDidMount(){
-    console.log("State : ", this.state);
-    console.log("Props : ", this.props);
-  }
+
 
   render() {
     document.title = 'Bohubrihi Restaurant'
@@ -21,4 +12,4 @@ export class Home extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default Home;
