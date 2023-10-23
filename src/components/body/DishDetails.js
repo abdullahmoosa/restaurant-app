@@ -4,7 +4,7 @@ import LoadComments from './LoadComments'
 import CommentForm from './CommentForm'
 
 const DishDetailComponent = ({dish, comments, addComment}) => {
-  console.log("DishDetail", addComment);
+  // console.log("DishDetail", addComment);
   return (
     <div>
       <Card className="my-2">
